@@ -9,3 +9,13 @@ export const productsQuery = groq`*[_type == "product"] {
   "imageUrl": image.asset->url,
   benefits
 }`
+
+export const singleProductQuery = groq`*[_type == "product" && _id == $id][0] {
+  _id,
+  name,
+  reference,
+  category,
+  description,
+  "imageUrl": image.asset->url,
+  benefits
+}`

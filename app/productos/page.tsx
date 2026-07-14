@@ -52,11 +52,12 @@ export default async function ProductosPage() {
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((p: any) => (
-              <div 
+              <Link 
+                href={`/productos/${p._id}`}
                 key={p._id} 
                 className="group relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-graphite transition-colors hover:border-energy"
               >
-                <div className="relative aspect-[4/3] bg-void p-6 flex items-center justify-center">
+                <div className="relative aspect-[4/3] bg-white p-6 flex items-center justify-center">
                   {p.imageUrl ? (
                     <Image
                       src={p.imageUrl}
@@ -65,7 +66,7 @@ export default async function ProductosPage() {
                       className="object-contain transition-transform duration-500 group-hover:scale-105 p-4"
                     />
                   ) : (
-                    <div className="text-faint text-sm font-mono uppercase">Sin Imagen</div>
+                    <div className="text-mist text-sm font-mono uppercase">Sin Imagen</div>
                   )}
                 </div>
                 <div className="flex flex-1 flex-col p-6">
@@ -80,7 +81,7 @@ export default async function ProductosPage() {
                     {p.description}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
