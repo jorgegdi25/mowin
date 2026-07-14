@@ -79,20 +79,20 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             {/* Details */}
             <div className="flex flex-col">
               <div className="mb-4 flex items-center gap-4">
-                <span className="inline-block rounded-full border border-energy/30 bg-energy/10 px-3 py-1 font-mono text-xs text-energy">
+                <span className="inline-block rounded-full border border-energy/30 bg-energy/10 px-4 py-1.5 font-mono text-sm text-energy">
                   {product.reference || 'N/A'}
                 </span>
-                <span className="font-mono text-xs uppercase tracking-widest text-faint">
+                <span className="font-mono text-sm uppercase tracking-widest text-faint">
                   {product.category || 'General'}
                 </span>
               </div>
               
-              <h1 className="mb-6 font-display text-4xl font-extrabold uppercase leading-none tracking-tight sm:text-5xl text-ink">
+              <h1 className="mb-8 font-display text-4xl font-extrabold uppercase leading-none tracking-tight sm:text-5xl text-ink">
                 {product.name}
               </h1>
               
-              <div className="prose prose-invert max-w-none mb-10 text-mist">
-                <p className="text-lg leading-relaxed">{product.description}</p>
+              <div className="prose prose-invert max-w-none mb-12 text-mist">
+                <p className="text-xl leading-relaxed whitespace-pre-wrap">{product.description}</p>
               </div>
 
               {product.benefits && product.benefits.length > 0 && (
@@ -100,11 +100,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   <h3 className="text-sm font-mono uppercase tracking-widest text-faint mb-6">Especificaciones destacadas</h3>
                   <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline">
                     {product.benefits.map((b: any) => (
-                      <div key={b.label} className="bg-carbon p-5">
-                        <dt className="text-xs uppercase tracking-widest text-faint mb-1">
+                      <div key={b.label} className="bg-carbon p-6">
+                        <dt className="text-sm uppercase tracking-widest text-faint mb-2">
                           {b.label}
                         </dt>
-                        <dd className="font-display text-lg font-bold text-ink">
+                        <dd className="font-display text-xl font-bold text-ink">
                           {b.value}
                         </dd>
                       </div>

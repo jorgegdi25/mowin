@@ -71,14 +71,14 @@ export default async function ProductosPage() {
                   )}
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <div className="mb-2 flex items-center justify-between gap-4">
-                    <p className="font-mono text-xs text-energy">{p.reference || 'N/A'}</p>
-                    <p className="font-mono text-xs text-faint">{p.category || 'General'}</p>
+                  <div className="mb-3 flex items-center justify-between gap-4">
+                    <p className="font-mono text-sm text-energy">{p.reference || 'N/A'}</p>
+                    <p className="font-mono text-sm text-faint">{p.category || 'General'}</p>
                   </div>
-                  <h3 className="mb-3 font-display text-lg font-bold uppercase leading-tight text-ink">
+                  <h3 className="mb-4 font-display text-xl font-bold uppercase leading-tight text-ink">
                     {p.name}
                   </h3>
-                  <p className="mt-auto text-sm leading-relaxed text-mist line-clamp-3" title={p.description}>
+                  <p className="mt-auto text-base leading-relaxed text-mist line-clamp-3" title={p.description}>
                     {p.description}
                   </p>
                 </div>
