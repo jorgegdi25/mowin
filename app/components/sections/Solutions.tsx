@@ -18,7 +18,7 @@ export function Solutions() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         {/* Encabezado */}
         <Reveal className="flex items-baseline gap-6">
-          <span className="font-display text-sm font-bold text-energy">02</span>
+          <span className="font-display text-base font-bold text-energy">02</span>
           <div>
             <p className="eyebrow mb-3">Nuestras soluciones</p>
             <h2
@@ -76,7 +76,7 @@ export function Solutions() {
                     </span>
                   </span>
                   <span
-                    className={`whitespace-nowrap text-xs font-semibold transition-colors duration-300 lg:text-sm ${
+                    className={`whitespace-nowrap text-sm font-semibold transition-colors duration-300 lg:text-base ${
                       isActive ? "text-ink" : "text-faint group-hover:text-mist"
                     }`}
                   >
@@ -112,7 +112,7 @@ export function Solutions() {
                   {solution.bullets.map((b) => (
                     <li
                       key={b}
-                      className="flex items-start gap-3 text-sm text-mist"
+                      className="flex items-start gap-3 text-base text-mist"
                     >
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-energy" />
                       {b}

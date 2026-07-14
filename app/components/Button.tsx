@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 type Variant = "primary" | "ghost" | "outline";
 
 const base =
-  "group inline-flex items-center gap-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-energy focus-visible:ring-offset-2 focus-visible:ring-offset-void";
+  "group inline-flex items-center gap-2.5 rounded-full text-base font-semibold tracking-wide transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-energy focus-visible:ring-offset-2 focus-visible:ring-offset-void";
 
 const variants: Record<Variant, string> = {
   primary:

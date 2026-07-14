@@ -29,7 +29,7 @@ export function Technology() {
 
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal className="flex items-baseline gap-6">
-          <span className="font-display text-sm font-bold text-energy">03</span>
+          <span className="font-display text-base font-bold text-energy">03</span>
           <div className="max-w-3xl">
             <p className="eyebrow mb-3">I+D+i · Tecnología</p>
             <h2
@@ -55,13 +55,13 @@ export function Technology() {
               delay={i * 0.08}
               className="group relative bg-carbon p-8 transition-colors duration-500 hover:bg-graphite lg:p-10"
             >
-              <span className="font-display text-sm font-bold text-energy">
+              <span className="font-display text-base font-bold text-energy">
                 {p.n}
               </span>
               <h3 className="mt-6 font-display text-xl font-bold tracking-tight">
                 {p.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-mist">{p.text}</p>
+              <p className="mt-3 text-base leading-relaxed text-mist">{p.text}</p>
               <span className="absolute right-8 top-8 h-2 w-2 rotate-45 bg-energy/0 transition-colors duration-500 group-hover:bg-energy" />
             </Reveal>
           ))}
@@ -74,7 +74,7 @@ export function Technology() {
               <p className="font-display text-4xl font-extrabold tracking-tight text-ink lg:text-5xl">
                 {s.value}
               </p>
-              <p className="mt-2 text-sm text-mist">{s.label}</p>
+              <p className="mt-2 text-base text-mist">{s.label}</p>
             </Reveal>
           ))}
         </div>

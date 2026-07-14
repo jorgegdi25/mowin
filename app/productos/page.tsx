@@ -35,7 +35,7 @@ export default function ProductosPage() {
             MOWIN — Multiplex, LED, Audio, Telemática y desarrollos a medida —
             con especificaciones y descargas técnicas.
           </p>
-          <p className="mt-2 text-sm text-faint">
+          <p className="mt-2 text-base text-faint">
             Mientras tanto, puedes ver algunos de nuestros productos
             destacados en la Home o escribirnos directamente.
           </p>
@@ -49,7 +49,7 @@ export default function ProductosPage() {
             </Button>
           </div>
 
-          <p className="mt-16 text-xs uppercase tracking-widest text-faint">
+          <p className="mt-16 text-sm uppercase tracking-widest text-faint">
             {FEATURED_PRODUCTS.length} sistemas ya disponibles · más en camino
           </p>
         </div>

@@ -140,13 +140,13 @@ export function FeaturedProduct() {
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.4, ease: EASE }}
               >
-                <p className="font-mono text-xs uppercase tracking-widest text-faint">
+                <p className="font-mono text-sm uppercase tracking-widest text-faint">
                   Producto {index + 1} / {total}
                 </p>
                 <h3 className="mt-2 font-display text-4xl font-extrabold uppercase leading-none tracking-tight sm:text-5xl">
                   {p.name}
                 </h3>
-                <p className="mt-3 font-mono text-xs uppercase tracking-widest text-faint">
+                <p className="mt-3 font-mono text-sm uppercase tracking-widest text-faint">
                   {p.reference}
                 </p>
                 <p className="mt-6 max-w-md text-base leading-relaxed text-mist">
@@ -156,7 +156,7 @@ export function FeaturedProduct() {
                 <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline">
                   {p.benefits.map((b) => (
                     <div key={b.label} className="bg-carbon p-5">
-                      <dt className="text-xs uppercase tracking-widest text-faint">
+                      <dt className="text-sm uppercase tracking-widest text-faint">
                         {b.label}
                       </dt>
                       <dd className="mt-1 font-display text-lg font-bold text-ink">

@@ -69,7 +69,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`relative text-sm font-medium transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-energy after:transition-all after:duration-300 hover:after:w-full ${
+                className={`relative text-base font-medium transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-energy after:transition-all after:duration-300 hover:after:w-full ${
                   isActive
                     ? "text-ink after:w-full"
                     : "text-mist hover:text-ink after:w-0"

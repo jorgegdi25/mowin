@@ -12,7 +12,7 @@ export function Footer() {
           {/* Marca */}
           <div>
             <Logo />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-mist">
+            <p className="mt-5 max-w-xs text-base leading-relaxed text-mist">
               Ingeniería electrónica diseñada para un futuro más conectado,
               seguro y eficiente.
             </p>
@@ -26,7 +26,7 @@ export function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-mist transition-colors hover:text-ink"
+                    className="text-base text-mist transition-colors hover:text-ink"
                   >
                     {link.label}
                   </a>
@@ -43,7 +43,7 @@ export function Footer() {
                 <li key={s.id}>
                   <a
                     href="#soluciones"
-                    className="text-sm text-mist transition-colors hover:text-ink"
+                    className="text-base text-mist transition-colors hover:text-ink"
                   >
                     {s.name}
                   </a>
@@ -55,7 +55,7 @@ export function Footer() {
           {/* Contacto */}
           <div>
             <h3 className="eyebrow mb-5">Contacto</h3>
-            <address className="space-y-3 text-sm not-italic text-mist">
+            <address className="space-y-3 text-base not-italic text-mist">
               <p>
                 {CONTACT.addressLines[0]}
                 <br />
@@ -98,7 +98,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-hairline pt-8 text-xs text-faint sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-2 border-t border-hairline pt-8 text-sm text-faint sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} MOWIN Technologies. Todos los derechos reservados.</p>
           <p>Engineering Intelligent Mobility.</p>
         </div>

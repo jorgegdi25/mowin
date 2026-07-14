@@ -139,7 +139,7 @@ export function Hero() {
 
           <motion.p
             {...rise(0.28)}
-            className="mt-5 max-w-[560px] font-display text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-energy-hover sm:text-xs"
+            className="mt-5 max-w-[560px] font-display text-xs font-semibold uppercase tracking-[0.16em] text-energy-hover sm:text-sm"
           >
             Multiplex · Información LED · Telemática
           </motion.p>
@@ -379,7 +379,7 @@ export function Hero() {
               initial={reduce ? false : { opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.18 }}
-              className="mt-2 max-w-[390px] text-xs leading-5 text-mist sm:text-[13px]"
+              className="mt-2 max-w-[390px] text-sm leading-5 text-mist sm:text-sm"
             >
               <span className="text-faint">
                 {screenMode === "photo" ? "Vista fotográfica" : `Pantalla ${activeScreen + 1}/${SCREEN_STATES.length}`}

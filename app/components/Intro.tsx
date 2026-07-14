@@ -155,7 +155,7 @@ export function Intro() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="group absolute bottom-[28%] flex items-center gap-2.5 rounded-full border border-hairline-strong px-7 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-300 hover:border-energy hover:text-energy-bright sm:bottom-[22%]"
+              className="group absolute bottom-[28%] flex items-center gap-2.5 rounded-full border border-hairline-strong px-7 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-ink transition-colors duration-300 hover:border-energy hover:text-energy-bright sm:bottom-[22%]"
             >
               Entrar
               <svg

@@ -11,7 +11,7 @@ export function Clients() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-baseline gap-6">
-            <span className="font-display text-sm font-bold text-energy">
+            <span className="font-display text-base font-bold text-energy">
               04
             </span>
             <h2 className="max-w-xs font-display text-2xl font-bold uppercase leading-tight tracking-tight sm:text-3xl">
