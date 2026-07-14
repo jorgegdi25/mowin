@@ -45,7 +45,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
           <div className="grid gap-12 lg:grid-cols-2 items-start">
             {/* Image Gallery */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 lg:sticky lg:top-32">
               <div className="relative overflow-hidden rounded-3xl border border-hairline bg-white p-8 sm:p-12 min-h-[400px] flex items-center justify-center">
                 {product.imageUrl ? (
                   <Image
