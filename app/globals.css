@@ -1,26 +1,405 @@
 @import "tailwindcss";
 
+/* ============================================================
+   MOWIN Design System v1.0 — Engineering Intelligent Mobility
+   ============================================================ */
+
+@theme {
+  /* Fondos y superficies */
+  --color-void: #050505; /* Fondo principal — negro profundo */
+  --color-carbon: #0f1115; /* Fondo secundario — gris carbón */
+  --color-graphite: #1a1d22; /* Superficies — gris grafito */
+  --color-graphite-2: #22262d; /* Superficie elevada */
+
+  /* Texto */
+  --color-ink: #ffffff; /* Texto principal */
+  --color-mist: #b8c0cc; /* Texto secundario */
+  --color-faint: #6b7280; /* Texto terciario / metadatos */
+
+  /* Azul de energía — solo acento */
+  --color-energy: #1f6bff; /* Azul principal */
+  --color-energy-bright: #3e8bff; /* Azul brillante */
+  --color-energy-hover: #5ea8ff; /* Azul hover */
+
+  /* Bordes */
+  --color-hairline: rgba(255, 255, 255, 0.08);
+  --color-hairline-strong: rgba(255, 255, 255, 0.16);
+
+  /* Tipografía */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-orbitron), var(--font-jakarta), var(--font-inter), sans-serif;
+
+  /* Escala fluida de títulos */
+  --text-hero: clamp(1.9rem, 3.4vw + 1rem, 3.5rem);
+  --text-hero--line-height: 1.15;
+  --text-section: clamp(1.5rem, 2.1vw + 1rem, 2.15rem);
+  --text-section--line-height: 1.2;
+
+  /* Motion */
+  --ease-mowin: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-color: var(--color-hairline);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  /* Keep anchor navigation clear of the fixed header. */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Keep the page as one vertical scroll surface across desktop and mobile. */
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  overflow-y: auto;
+}
+
+::selection {
+  background: var(--color-energy);
+  color: #fff;
+}
+
+/* Scrollbar sutil, coherente con la marca */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-graphite);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-graphite-2);
+}
+
+/* Utilidades de marca ------------------------------------------------ */
+
+/* Texto con gradiente azul de energía */
+.text-energy-gradient {
+  background: linear-gradient(
+    120deg,
+    var(--color-energy-bright),
+    var(--color-energy-hover)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Etiqueta técnica: numeración de sección / kicker */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+}
+
+/* Grid de circuito muy sutil como textura de fondo */
+.circuit-grid {
+  background-image:
+    linear-gradient(var(--color-hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+  /* Puramente decorativo: nunca debe interceptar clics de elementos debajo. */
+  pointer-events: none;
+}
+
+/* Resplandor radial azul reutilizable */
+.energy-glow {
+  background: radial-gradient(
+    circle at center,
+    rgba(31, 107, 255, 0.35) 0%,
+    rgba(31, 107, 255, 0.08) 35%,
+    transparent 70%
+  );
+  /* Puramente decorativo: nunca debe interceptar clics de elementos debajo. */
+  pointer-events: none;
+}
+
+/* Luz ambiental del producto principal, sin patrones geométricos. */
+.hero-product-glow {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(24, 103, 255, 0.32) 0%, rgba(12, 67, 181, 0.14) 34%, transparent 66%);
+  filter: blur(12px);
+  opacity: 0.72;
+}
+
+/* Pantalla y controles físicos del dispositivo interactivo del hero. */
+.hero-device-control {
+  width: clamp(2.75rem, 6.5vw, 4.35rem);
+  height: clamp(2.75rem, 6.5vw, 4.35rem);
+  border: 1px solid transparent;
+  background: rgba(31, 107, 255, 0.01);
+  transition:
+    border-color 240ms var(--ease-mowin),
+    background-color 240ms var(--ease-mowin),
+    box-shadow 240ms var(--ease-mowin);
+}
+
+.hero-device-control::after {
+  content: "";
+  position: absolute;
+  inset: 32%;
+  border-radius: 999px;
+  background: rgba(94, 168, 255, 0);
+  box-shadow: 0 0 0 rgba(31, 107, 255, 0);
+  transition:
+    background-color 240ms var(--ease-mowin),
+    box-shadow 240ms var(--ease-mowin);
+}
+
+.hero-device-control:hover {
+  border-color: rgba(94, 168, 255, 0.68);
+  background: rgba(31, 107, 255, 0.14);
+  box-shadow:
+    0 0 0 5px rgba(31, 107, 255, 0.07),
+    0 0 24px rgba(31, 107, 255, 0.5);
+}
+
+.hero-device-control:active {
+  border-color: rgba(122, 184, 255, 0.95);
+  background: rgba(31, 107, 255, 0.3);
+  box-shadow:
+    0 0 0 6px rgba(31, 107, 255, 0.12),
+    0 0 28px rgba(31, 107, 255, 0.72);
+}
+
+.hero-device-control.is-guided {
+  border-color: rgba(94, 168, 255, 0.9);
+  background: rgba(31, 107, 255, 0.22);
+  animation: device-control-attention 1.8s var(--ease-mowin) infinite;
+}
+
+.hero-device-control.is-guided::after {
+  background: rgba(122, 184, 255, 0.9);
+  box-shadow: 0 0 14px rgba(62, 139, 255, 1);
+}
+
+.hero-device-control:hover::after,
+.hero-device-control:focus-visible::after,
+.hero-device-control:active::after {
+  background: rgba(94, 168, 255, 0.8);
+  box-shadow: 0 0 12px rgba(62, 139, 255, 0.9);
+}
+
+.hero-device-hint::before,
+.hero-device-hint::after {
+  content: "";
+  width: clamp(0.9rem, 3vw, 2.2rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(62, 139, 255, 0.52));
+}
+
+.hero-device-hint::after {
+  transform: rotate(180deg);
+}
+
+.hero-device-onboarding {
+  padding: 0.52rem 0.86rem 0.52rem 0.58rem;
+  border: 1px solid rgba(94, 168, 255, 0.5);
+  border-radius: 999px;
+  background: linear-gradient(120deg, rgba(10, 38, 86, 0.86), rgba(5, 13, 28, 0.9));
+  box-shadow:
+    0 0 0 3px rgba(31, 107, 255, 0.05),
+    0 0 22px rgba(31, 107, 255, 0.22);
+  animation: device-guide-breathe 2.4s var(--ease-mowin) infinite;
+}
+
+.hero-device-onboarding::before,
+.hero-device-onboarding::after {
+  width: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+.hero-onboarding-arrow {
+  display: inline-grid;
+  width: 1.42rem;
+  height: 1.42rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-energy);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  box-shadow: 0 0 12px rgba(62, 139, 255, 0.54);
+  animation: device-guide-arrow 1.35s ease-in-out infinite;
+}
+
+@keyframes device-control-attention {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px rgba(31, 107, 255, 0.1),
+      0 0 18px rgba(31, 107, 255, 0.45);
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px rgba(31, 107, 255, 0.02),
+      0 0 34px rgba(62, 139, 255, 0.8);
+  }
+}
+
+@keyframes device-guide-breathe {
+  0%,
+  100% {
+    border-color: rgba(94, 168, 255, 0.48);
+  }
+  50% {
+    border-color: rgba(122, 184, 255, 0.92);
+  }
+}
+
+@keyframes device-guide-arrow {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+/* Punto de inspección del producto protagonista. */
+.hero-hotspot {
+  width: 1.55rem;
+  height: 1.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(5, 5, 5, 0.7);
+  box-shadow:
+    0 0 0 5px rgba(31, 107, 255, 0.08),
+    0 0 22px rgba(31, 107, 255, 0.36);
+  transition:
+    background-color 300ms var(--ease-mowin),
+    border-color 300ms var(--ease-mowin),
+    box-shadow 300ms var(--ease-mowin),
+    transform 300ms var(--ease-mowin);
+}
+
+.hero-hotspot::before,
+.hero-hotspot::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.hero-hotspot::before {
+  width: 0.38rem;
+  height: 0.38rem;
+  background: var(--color-energy-bright);
+  box-shadow: 0 0 10px var(--color-energy-hover);
+}
+
+.hero-hotspot::after {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(62, 139, 255, 0.85);
+  opacity: 0;
+}
+
+.hero-hotspot:hover,
+.hero-hotspot.is-active {
+  border-color: var(--color-energy-hover);
+  background: rgba(31, 107, 255, 0.28);
+  box-shadow:
+    0 0 0 7px rgba(31, 107, 255, 0.12),
+    0 0 30px rgba(31, 107, 255, 0.65);
+}
+
+.hero-hotspot.is-active::after {
+  animation: hotspot-ping 1.8s ease-out infinite;
+}
+
+@keyframes hotspot-ping {
+  0% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.1);
+  }
+}
+
+/* En dispositivos táctiles mantenemos el hero sereno y sin seguimiento. */
+@media (hover: none), (pointer: coarse) {
+  .hero-interactive-bg {
+    display: none;
+  }
+
+  .hero-hotspot {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .hero-device-control {
+    border-color: rgba(94, 168, 255, 0.2);
+    background: rgba(31, 107, 255, 0.05);
+  }
+}
+
+@keyframes energy-dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-float-slow {
+  animation: float-slow 6s var(--ease-mowin) infinite;
+}
+
+@keyframes scroll-hint {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.animate-scroll-hint {
+  animation: scroll-hint 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
