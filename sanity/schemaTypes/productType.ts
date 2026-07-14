@@ -26,6 +26,12 @@ export const productType = {
       options: { hotspot: true },
     },
     {
+      name: 'gallery',
+      title: 'Image Gallery',
+      type: 'array',
+      of: [{ type: 'image' }],
+    },
+    {
       name: 'benefits',
       title: 'Benefits',
       type: 'array',

@@ -7,6 +7,7 @@ export const productsQuery = groq`*[_type == "product"] {
   category,
   description,
   "imageUrl": image.asset->url,
+  "galleryUrls": gallery[].asset->url,
   benefits
 }`
 
@@ -17,5 +18,6 @@ export const singleProductQuery = groq`*[_type == "product" && _id == $id][0] {
   category,
   description,
   "imageUrl": image.asset->url,
+  "galleryUrls": gallery[].asset->url,
   benefits
 }`

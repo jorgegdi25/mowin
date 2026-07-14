@@ -44,18 +44,35 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           </Link>
 
           <div className="grid gap-12 lg:grid-cols-2 items-start">
-            {/* Image */}
-            <div className="relative overflow-hidden rounded-3xl border border-hairline bg-white p-8 sm:p-12 min-h-[400px] flex items-center justify-center">
-              {product.imageUrl ? (
-                <Image
-                  src={product.imageUrl}
-                  alt={product.name}
-                  width={800}
-                  height={800}
-                  className="w-full h-auto object-contain"
-                />
-              ) : (
-                <div className="text-mist font-mono uppercase">Sin Imagen</div>
+            {/* Image Gallery */}
+            <div className="flex flex-col gap-4">
+              <div className="relative overflow-hidden rounded-3xl border border-hairline bg-white p-8 sm:p-12 min-h-[400px] flex items-center justify-center">
+                {product.imageUrl ? (
+                  <Image
+                    src={product.imageUrl}
+                    alt={product.name}
+                    width={800}
+                    height={800}
+                    className="w-full h-auto object-contain"
+                  />
+                ) : (
+                  <div className="text-mist font-mono uppercase">Sin Imagen</div>
+                )}
+              </div>
+              
+              {product.galleryUrls && product.galleryUrls.length > 0 && (
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
+                  {product.galleryUrls.map((url: string, i: number) => (
+                    <div key={i} className="relative aspect-square overflow-hidden rounded-xl border border-hairline bg-white hover:border-energy transition-colors cursor-pointer flex items-center justify-center">
+                      <Image
+                        src={url}
+                        alt={`${product.name} - Vista ${i + 1}`}
+                        fill
+                        className="object-contain p-2"
+                      />
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
 
