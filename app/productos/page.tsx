@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { Button } from "../components/Button";
-import { FEATURED_PRODUCTS } from "../lib/content";
 import { client } from "../../sanity/lib/client";
 import { productsQuery } from "../../sanity/lib/queries";
 
@@ -17,56 +16,73 @@ export const metadata: Metadata = {
 export default async function ProductosPage() {
   let products = [];
   try {
-    if (client.config().projectId !== 'quc3ruz6') {
-      products = await client.fetch(productsQuery);
-    }
+    products = await client.fetch(productsQuery);
   } catch (err) {
     console.error("Error fetching Sanity products", err);
   }
 
-  const count = products.length > 0 ? products.length : FEATURED_PRODUCTS.length;
+  const count = products.length;
 
   return (
     <>
       <Header />
-      <main className="relative flex min-h-screen items-center overflow-hidden pt-24">
+      <main className="relative min-h-screen pt-32 pb-24 overflow-hidden">
         <div className="circuit-grid pointer-events-none absolute inset-0 -z-10" />
-        <div className="energy-glow pointer-events-none absolute -right-40 top-1/3 -z-10 h-[600px] w-[600px] opacity-60" />
-
-        <div className="mx-auto max-w-3xl px-6 py-24 text-center lg:px-10">
-          <p className="eyebrow mb-6 flex items-center justify-center gap-3">
-            <span className="inline-block h-px w-8 bg-energy" />
-            Catálogo completo
-            <span className="inline-block h-px w-8 bg-energy" />
-          </p>
-          <h1
-            className="font-display font-extrabold uppercase leading-[1.1] tracking-tight"
-            style={{ fontSize: "var(--text-section)" }}
-          >
-            Estamos construyendo esta página
-          </h1>
-          <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-mist">
-            Muy pronto encontrarás aquí la ficha completa de cada sistema
-            MOWIN — Multiplex, LED, Audio, Telemática y desarrollos a medida —
-            con especificaciones y descargas técnicas.
-          </p>
-          <p className="mt-2 text-base text-faint">
-            Mientras tanto, puedes ver algunos de nuestros productos
-            destacados en la Home o escribirnos directamente.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/#producto" variant="primary">
-              Ver productos destacados
-            </Button>
-            <Button href="/#contacto" variant="outline">
-              Contáctanos
-            </Button>
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="mb-16 text-center">
+            <p className="eyebrow mb-6 flex items-center justify-center gap-3">
+              <span className="inline-block h-px w-8 bg-energy" />
+              Catálogo completo
+              <span className="inline-block h-px w-8 bg-energy" />
+            </p>
+            <h1
+              className="font-display font-extrabold uppercase leading-[1.1] tracking-tight"
+              style={{ fontSize: "var(--text-section)" }}
+            >
+              Sistemas MOWIN
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mist">
+              Explora nuestro catálogo completo de soluciones electrónicas para el sector transporte.
+            </p>
+            <p className="mt-4 text-sm font-mono uppercase tracking-widest text-faint">
+              {count} productos disponibles
+            </p>
           </div>
 
-          <p className="mt-16 text-sm uppercase tracking-widest text-faint">
-            {count} sistemas ya disponibles · más en camino
-          </p>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {products.map((p: any) => (
+              <div 
+                key={p._id} 
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-graphite transition-colors hover:border-energy"
+              >
+                <div className="relative aspect-[4/3] bg-void p-6 flex items-center justify-center">
+                  {p.imageUrl ? (
+                    <Image
+                      src={p.imageUrl}
+                      alt={p.name}
+                      fill
+                      className="object-contain transition-transform duration-500 group-hover:scale-105 p-4"
+                    />
+                  ) : (
+                    <div className="text-faint text-sm font-mono uppercase">Sin Imagen</div>
+                  )}
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="mb-2 flex items-center justify-between gap-4">
+                    <p className="font-mono text-xs text-energy">{p.reference || 'N/A'}</p>
+                    <p className="font-mono text-xs text-faint">{p.category || 'General'}</p>
+                  </div>
+                  <h3 className="mb-3 font-display text-lg font-bold uppercase leading-tight text-ink">
+                    {p.name}
+                  </h3>
+                  <p className="mt-auto text-sm leading-relaxed text-mist line-clamp-3" title={p.description}>
+                    {p.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </main>
       <Footer />
