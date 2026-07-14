@@ -59,16 +59,19 @@ export default async function ProductosPage() {
                 className="group relative flex flex-col overflow-hidden rounded-2xl border border-hairline bg-graphite transition-colors hover:border-energy"
               >
                 <div className="relative aspect-[4/3] bg-white p-6 flex items-center justify-center">
-                  {p.imageUrl ? (
-                    <Image
-                      src={p.imageUrl}
-                      alt={p.name}
-                      fill
-                      className="object-contain transition-transform duration-500 group-hover:scale-105 p-4"
-                    />
-                  ) : (
-                    <div className="text-mist text-sm font-mono uppercase">Sin Imagen</div>
-                  )}
+                  {(() => {
+                    const imageSrc = p.imageUrl || (p.galleryUrls && p.galleryUrls.length > 0 ? p.galleryUrls[0] : null);
+                    return imageSrc ? (
+                      <Image
+                        src={imageSrc}
+                        alt={p.name}
+                        fill
+                        className="object-contain transition-transform duration-500 group-hover:scale-105 p-4"
+                      />
+                    ) : (
+                      <div className="text-mist text-sm font-mono uppercase">Sin Imagen</div>
+                    );
+                  })()}
                 </div>
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-3 flex items-center justify-between gap-4">
