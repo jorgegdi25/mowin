@@ -156,7 +156,7 @@ export function FeaturedProduct({ sanityProducts = [] }: { sanityProducts?: any[
                 </p>
 
                 <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline">
-                  {p.benefits.map((b) => (
+                  {p.benefits?.map((b: any) => (
                     <div key={b.label} className="bg-carbon p-5">
                       <dt className="text-sm uppercase tracking-widest text-faint">
                         {b.label}
