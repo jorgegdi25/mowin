@@ -3,6 +3,10 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Button } from "../components/Button";
 import { FEATURED_PRODUCTS } from "../lib/content";
+import { client } from "../../sanity/lib/client";
+import { productsQuery } from "../../sanity/lib/queries";
+
+export const revalidate = 60; // Revalidate every minute
 
 export const metadata: Metadata = {
   title: "Catálogo de productos",
@@ -10,7 +14,18 @@ export const metadata: Metadata = {
     "Catálogo completo de sistemas MOWIN: multiplex, LED, audio, telemática y desarrollos a medida.",
 };
 
-export default function ProductosPage() {
+export default async function ProductosPage() {
+  let products = [];
+  try {
+    if (client.config().projectId !== 'quc3ruz6') {
+      products = await client.fetch(productsQuery);
+    }
+  } catch (err) {
+    console.error("Error fetching Sanity products", err);
+  }
+
+  const count = products.length > 0 ? products.length : FEATURED_PRODUCTS.length;
+
   return (
     <>
       <Header />
@@ -50,7 +65,7 @@ export default function ProductosPage() {
           </div>
 
           <p className="mt-16 text-sm uppercase tracking-widest text-faint">
-            {FEATURED_PRODUCTS.length} sistemas ya disponibles · más en camino
+            {count} sistemas ya disponibles · más en camino
           </p>
         </div>
       </main>

@@ -9,10 +9,12 @@ import { Reveal } from "../Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-export function FeaturedProduct() {
+export function FeaturedProduct({ sanityProducts = [] }: { sanityProducts?: any[] }) {
   const [[index, direction], setIndex] = useState<[number, number]>([0, 0]);
-  const total = FEATURED_PRODUCTS.length;
-  const p = FEATURED_PRODUCTS[index];
+  
+  const products = sanityProducts.length > 0 ? sanityProducts : FEATURED_PRODUCTS;
+  const total = products.length;
+  const p = products[index];
 
   const isFirst = index === 0;
   const isLast = index === total - 1;
@@ -68,14 +70,14 @@ export function FeaturedProduct() {
             <div className="relative overflow-hidden rounded-3xl border border-hairline bg-gradient-to-br from-graphite to-void p-8 sm:p-12">
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
-                  key={p.id}
+                  key={p.id || p._id}
                   initial={{ opacity: 0, x: direction >= 0 ? 40 : -40 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: direction >= 0 ? -40 : 40 }}
                   transition={{ duration: 0.45, ease: EASE }}
                 >
                   <Image
-                    src={p.image}
+                    src={p.imageUrl || p.image}
                     alt={`${p.name} — ${p.reference}`}
                     width={720}
                     height={480}
@@ -102,9 +104,9 @@ export function FeaturedProduct() {
               </button>
 
               <div className="flex items-center gap-2">
-                {FEATURED_PRODUCTS.map((item, i) => (
+                {products.map((item, i) => (
                   <button
-                    key={item.id}
+                    key={item.id || item._id}
                     type="button"
                     onClick={() => goTo(i)}
                     aria-label={`Ver ${item.name}`}
@@ -134,7 +136,7 @@ export function FeaturedProduct() {
           <div className="relative order-1 lg:order-2">
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.div
-                key={p.id}
+                key={p.id || p._id}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
