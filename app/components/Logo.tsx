@@ -4,7 +4,7 @@ export function Logo({ className = "" }: { className?: string }) {
     <span className={`inline-flex items-center gap-3 text-ink ${className}`}>
       <svg
         viewBox="0 0 276.04 137.5"
-        className="h-7 w-auto"
+        className="h-10 w-auto"
         fill="currentColor"
         aria-label="MOWIN"
       >
