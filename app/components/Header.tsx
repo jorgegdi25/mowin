@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { Button } from "./Button";
 import { NAV_LINKS } from "@/app/lib/content";
 
 export function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeHref, setActiveHref] = useState<string>("#inicio");
+  const [activeHref, setActiveHref] = useState<string>("/#inicio");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -19,16 +22,18 @@ export function Header() {
 
   // Scroll-spy: resalta en el nav la sección visible cerca del centro del viewport
   useEffect(() => {
+    if (pathname !== "/") return;
+
     const sections = NAV_LINKS.map((link) =>
-      document.querySelector(link.href)
-    ).filter((el): el is Element => el !== null);
+      document.getElementById(link.sectionId)
+    ).filter((el): el is HTMLElement => el !== null);
     if (sections.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveHref(`#${entry.target.id}`);
+            setActiveHref(`/#${entry.target.id}`);
           }
         });
       },
@@ -37,7 +42,7 @@ export function Header() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   // Bloquea el scroll del body cuando el menú móvil está abierto
   useEffect(() => {
@@ -56,20 +61,22 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        <a href="#inicio" aria-label="MOWIN inicio">
+        <Link href="/" aria-label="MOWIN inicio">
           <Logo />
-        </a>
+        </Link>
 
         {/* Nav desktop */}
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           {NAV_LINKS.map((link) => {
-            const isActive = activeHref === link.href;
+            const isActive =
+              (pathname === "/" && activeHref === link.href) ||
+              (link.sectionId === "producto" && pathname.startsWith("/productos"));
             return (
               <a
                 key={link.href}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`relative text-base font-medium transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-energy after:transition-all after:duration-300 hover:after:w-full ${
+                className={`relative text-sm font-medium transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-energy after:transition-all after:duration-300 hover:after:w-full ${
                   isActive
                     ? "text-ink after:w-full"
                     : "text-mist hover:text-ink after:w-0"
@@ -79,6 +86,17 @@ export function Header() {
               </a>
             );
           })}
+          <a
+            href="/aplicaciones"
+            aria-current={pathname === "/aplicaciones" ? "page" : undefined}
+            className={`rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300 ${
+              pathname === "/aplicaciones"
+                ? "border-energy bg-energy/15 text-ink shadow-[0_0_24px_rgba(31,107,255,0.2)]"
+                : "border-hairline-strong text-mist hover:border-energy hover:text-ink"
+            }`}
+          >
+            Aplicaciones
+          </a>
         </nav>
 
         <div className="hidden lg:block">
@@ -128,6 +146,13 @@ export function Header() {
               {link.label}
             </a>
           ))}
+          <a
+            href="/aplicaciones"
+            onClick={() => setOpen(false)}
+            className="border-b border-energy/40 py-4 font-display text-2xl font-bold text-energy-bright transition-colors hover:text-energy-hover"
+          >
+            Aplicaciones
+          </a>
           <div className="mt-8">
             <Button href="#contacto" variant="primary">
               Hablemos

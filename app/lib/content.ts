@@ -4,12 +4,12 @@
  */
 
 export const NAV_LINKS = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Soluciones", href: "#soluciones" },
-  { label: "Productos", href: "#producto" },
-  { label: "Tecnología", href: "#tecnologia" },
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "/#inicio", sectionId: "inicio" },
+  { label: "Soluciones", href: "/#soluciones", sectionId: "soluciones" },
+  { label: "Productos", href: "/#producto", sectionId: "producto" },
+  { label: "Tecnología", href: "/#tecnologia", sectionId: "tecnologia" },
+  { label: "Nosotros", href: "/#nosotros", sectionId: "nosotros" },
+  { label: "Contacto", href: "/#contacto", sectionId: "contacto" },
 ] as const;
 
 export type SolutionIcon =
